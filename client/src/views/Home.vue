@@ -3,7 +3,7 @@
     title="Your custom Black Friday deals."
     description="This web site help you manage the product your want. By simply adding them to your wishlist and the lowest price will be showned bellow."
   />
-  <section class="pb-20 bg-gray-300 -mt-24">
+  <section>
     <div class="container mx-auto px-4">
       <deals-list />
     </div>

@@ -3,7 +3,7 @@
     title="Your wishs."
     description="Feel free to add news products in your wishlist."
   />
-  <section class="pb-20 bg-gray-300 -mt-24">
+  <section>
     <div class="container mx-auto px-4">
       <wish-list />
     </div>

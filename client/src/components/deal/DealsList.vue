@@ -1,5 +1,6 @@
 <template>
   <div class="flex flex-wrap">
+    <h1 v-if="products.length === 0">No product found</h1>
     <deal-card
       v-for="(product, index) in products"
       v-bind:key="index"
@@ -18,7 +19,7 @@ export default {
   data() {
     return {
       loading: false,
-      products: null,
+      products: [],
       error: null
     };
   },
@@ -31,7 +32,9 @@ export default {
   },
   methods: {
     fetchData() {
-      this.error = this.post = null;
+      this.error = null;
+      this.post = [];
+      
       this.loading = true;
       // replace `getPost` with your data fetching util / API wrapper
       axios
