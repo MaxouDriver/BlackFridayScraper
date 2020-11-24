@@ -6,13 +6,17 @@
           <span class="flex-9 font-extrabold text-lg text-gray-900">{{
             product.name
           }}</span>
-           <base-button class="flex-1" text="-" @click="$emit('delete-product')" :negatif="true" />
+          <base-button
+            class="flex-1"
+            text="-"
+            @click="$emit('delete-product')"
+            :negatif="true"
+          />
         </div>
-        
+
         <span class="text-base text-gray-600 mt-1">{{
           product.description
         }}</span>
-       
       </div>
     </div>
     <div class="mx-4 py-3 border-b border-gray-200">
@@ -22,7 +26,12 @@
             <span class="font-extrabold text-xl text-gray-900 my-4"
               >Sources sites</span
             >
-            <base-button class="flex-auto ml-5" text="+" @click="showModal = true" :negatif="false" />
+            <base-button
+              class="flex-auto ml-5"
+              text="+"
+              @click="showModal = true"
+              :negatif="false"
+            />
           </div>
           <link-card
             v-for="(site, index) in sites"
@@ -62,7 +71,6 @@ export default {
   created() {
     this.sites = this.product.sites;
   },
-  watch: {},
   methods: {
     addSite(site) {
       axios

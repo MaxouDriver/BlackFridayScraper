@@ -1,11 +1,17 @@
 <template>
   <div class="flex flex-wrap">
     <h1 v-if="products.length === 0">No product found</h1>
+    <base-button text="+" @click="showModal = true" :negatif="false" />
     <wish-card
       v-for="(product, index) in products"
       v-bind:key="index"
       :product="product"
       @delete-product="() => deleteProduct(product)"
+    />
+    <product-modal
+      v-if="showModal"
+      @close="showModal = false"
+      @add-product="addProduct"
     />
   </div>
 </template>
@@ -13,15 +19,18 @@
 <script>
 import axios from "axios";
 import WishCard from "./WishCard.vue";
+import ProductModal from "./product/ProductModal.vue";
+import BaseButton from "../global/BaseButton.vue";
 
 export default {
-  components: { WishCard },
+  components: { WishCard, BaseButton, ProductModal },
   name: "wish-list",
   data() {
     return {
       loading: false,
       products: [],
-      error: null
+      error: null,
+      showModal: false
     };
   },
   created() {
@@ -44,12 +53,23 @@ export default {
         })
         .catch(err => (this.error = err.toString()));
     },
-    deleteProduct(productToDelete){
+    addProduct(product) {
+      axios
+        .post("http://localhost:4000/products/", { product: product })
+        .then(response => {
+          if (response.status === 200)
+            this.products = [...this.products, product];
+        })
+        .catch(err => (this.error = err.toString()));
+    },
+    deleteProduct(productToDelete) {
       axios
         .delete("http://localhost:4000/products/" + productToDelete.id)
         .then(response => {
           if (response.status === 200)
-            this.products = this.products.filter(product => product.id !== productToDelete.id);
+            this.products = this.products.filter(
+              product => product.id !== productToDelete.id
+            );
         })
         .catch(err => (this.error = err.toString()));
     }

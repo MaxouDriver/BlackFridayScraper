@@ -28,6 +28,7 @@ export default {
 </script>
 
 <style scoped>
-.header{
- background-color: gray; 
-}</style>
+.header {
+  background-color: gray;
+}
+</style>

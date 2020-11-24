@@ -10,6 +10,7 @@ export class Routes {
 
   public routes(app: express.Application): void {
     app.route("/products").get(this.productController.getAll);
+    app.route("/products").post(this.productController.addOne);
     app.route("/products/:id").delete(this.productController.removeOne);
     app.route("/products/:id/deals").get(this.productController.getDeals);
 

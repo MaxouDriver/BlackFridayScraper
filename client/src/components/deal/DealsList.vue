@@ -34,7 +34,6 @@ export default {
     fetchData() {
       this.error = null;
       this.post = [];
-      
       this.loading = true;
       // replace `getPost` with your data fetching util / API wrapper
       axios
