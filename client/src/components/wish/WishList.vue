@@ -4,6 +4,7 @@
       v-for="(product, index) in products"
       v-bind:key="index"
       :product="product"
+      @delete-product="() => deleteProduct(product)"
     />
   </div>
 </template>
@@ -33,12 +34,20 @@ export default {
     fetchData() {
       this.error = this.post = null;
       this.loading = true;
-      // replace `getPost` with your data fetching util / API wrapper
       axios
         .get("http://localhost:4000/products")
         .then(response => {
           this.loading = false;
           this.products = response.data;
+        })
+        .catch(err => (this.error = err.toString()));
+    },
+    deleteProduct(productToDelete){
+      axios
+        .delete("http://localhost:4000/products/" + productToDelete.id)
+        .then(response => {
+          if (response.status === 200)
+            this.products = this.products.filter(product => product.id !== productToDelete.id);
         })
         .catch(err => (this.error = err.toString()));
     }

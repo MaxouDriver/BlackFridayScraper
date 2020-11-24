@@ -2,6 +2,7 @@ import {Router, Request, Response} from 'express';
 import { getConnection, getRepository, Repository } from 'typeorm';
 import { ScraperController } from './scraper';
 import { Product } from '../entities/product';
+import { Site } from '../entities/site';
 
 export class ProductController { 
 
@@ -15,6 +16,11 @@ export class ProductController {
         res.send(await getRepository(Product).findOne(req.params.id, {
             relations: ["sites"]
         }));
+    }
+
+    async removeOne(req: Request, res: Response): Promise<void> {
+        const { id } = req.params
+        res.send(await getRepository(Product).delete(parseInt(id)));
     }
 
     public getDeals(req: Request, res: Response): void {

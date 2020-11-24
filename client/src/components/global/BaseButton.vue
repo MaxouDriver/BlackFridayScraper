@@ -19,10 +19,10 @@ export default {
 
 <style scoped>
 .btn-default {
+  width: 5vw;
+  height: 5vw;
+  max-width: 5vw;
+  max-height: 5vw;
   @apply px-4 py-2 rounded text-white;
-}
-
-.btn-active {
-  @apply focus:bg-blue-200 hover:bg-blue-300;
 }
 </style>

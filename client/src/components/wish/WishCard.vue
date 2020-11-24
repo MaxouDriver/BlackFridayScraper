@@ -1,23 +1,28 @@
 <template>
   <div class="right-0 bottom-0 top-0 w-1/3 bg-white mt-20 shadow-lg">
-    <div class="flex flex-col items-center mx-4 py-3 border-b border-gray-200">
-      <div class="mt-4 flex flex-col">
-        <span class="font-extrabold text-lg text-gray-900">{{
-          product.name
-        }}</span>
+    <div class="flex flex-col mx-4 py-3 border-b border-gray-200">
+      <div class="mt-4 flex flex-col flex-nowrap">
+        <div class="mt-4 flex">
+          <span class="flex-9 font-extrabold text-lg text-gray-900">{{
+            product.name
+          }}</span>
+           <base-button class="flex-1" text="-" @click="$emit('delete-product')" :negatif="true" />
+        </div>
+        
         <span class="text-base text-gray-600 mt-1">{{
           product.description
         }}</span>
+       
       </div>
     </div>
     <div class="mx-4 py-3 border-b border-gray-200">
       <div class="px-8">
         <div class="flex-col space-x-4 mb-4">
-          <div class="flex">
+          <div class="flex space-between">
             <span class="font-extrabold text-xl text-gray-900 my-4"
               >Sources sites</span
             >
-            <base-button text="+" @click="showModal = true" :negatif="false" />
+            <base-button class="flex-auto ml-5" text="+" @click="showModal = true" :negatif="false" />
           </div>
           <link-card
             v-for="(site, index) in sites"

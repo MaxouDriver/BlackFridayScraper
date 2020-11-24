@@ -20,6 +20,6 @@ export class Site {
     @Column("int")
     value: number;
 
-    @ManyToOne(product => Product, product => product.sites)
+    @ManyToOne(product => Product, product => product.sites, { onDelete: 'CASCADE' })
     product: Product;
 }
