@@ -22,7 +22,6 @@
                 v-model="description"
                 placeholder="Description"
               />
-
             </slot>
           </div>
 

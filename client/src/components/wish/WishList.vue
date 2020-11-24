@@ -58,7 +58,7 @@ export default {
         .post("http://localhost:4000/products/", { product: product })
         .then(response => {
           if (response.status === 200)
-            this.products = [...this.products, product];
+            this.products = [...this.products, response.data];
         })
         .catch(err => (this.error = err.toString()));
     },

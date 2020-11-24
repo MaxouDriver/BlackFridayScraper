@@ -33,6 +33,7 @@
               :negatif="false"
             />
           </div>
+          <h1 v-if="sites.length === 0">No sites found for this product</h1>
           <link-card
             v-for="(site, index) in sites"
             v-bind:key="index"
