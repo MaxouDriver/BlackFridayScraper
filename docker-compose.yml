@@ -1,0 +1,26 @@
+version: '3'
+services:
+  scraper-db:
+    build: ./db
+    container_name: scraper-db
+    ports:
+      - 5432:5432
+
+  scraper-server:
+    build: ./server
+    volumes:
+      - ./server:/usr/src/server
+      - /usr/src/server/node_modules
+    tty: true
+    container_name: scraper-server
+    environment:
+      - PG_HOST=scraper-db
+      - PG_PORT=5432
+      - API_PREFIX=/
+      - API_PORT=4000
+      - DB_SYNC=false
+      - DB_LOGGING=false
+    ports:
+      - 4000:4000
+    links:
+      - scraper-db
