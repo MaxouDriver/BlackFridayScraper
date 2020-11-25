@@ -3,10 +3,14 @@
     {{ site.name }}
   </p>
   <div class="flex">
-    <a :href="site.url" class="text-sm text-gray-600 flex items-center">
+    <a :href="site.url" class="text-sm text-gray-600 flex-3 items-center">
       {{ site.url }}
     </a>
-    <base-button text="-" @click="$emit('delete-site')" :negatif="true" />
+    <icon-button
+      class="flex-3"
+      iconClass="fa fa-minus"
+      @click="$emit('delete-site')"
+    />
   </div>
 </template>
 

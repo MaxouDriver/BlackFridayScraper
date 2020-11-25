@@ -1,7 +1,7 @@
 <template>
   <div
     class="header relative flex content-center items-center justify-center"
-    style="min-height: 75vh;"
+    style="min-height: 55vh;"
   >
     <div class="container relative mx-auto">
       <div class="items-center flex flex-wrap">

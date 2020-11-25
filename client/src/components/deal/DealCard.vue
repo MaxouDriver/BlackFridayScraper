@@ -40,7 +40,7 @@ export default {
   methods: {
     getSiteWithLowestPrice() {
       return this.product.sites.reduce((prev, current) =>
-        prev.value > current.value ? prev : current
+        prev.value < current.value ? prev : current
       );
     }
   }

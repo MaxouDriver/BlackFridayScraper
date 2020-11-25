@@ -1,16 +1,17 @@
 <template>
-  <div class="right-0 bottom-0 top-0 w-1/3 bg-white mt-20 shadow-lg">
+  <div
+    class="right-0 bottom-0 top-0 w-1/3 bg-white mt-20 rounded-lg shadow-lg mb-8"
+  >
     <div class="flex flex-col mx-4 py-3 border-b border-gray-200">
-      <div class="mt-4 flex flex-col flex-nowrap">
-        <div class="mt-4 flex">
+      <div class="mt-4 p-4 flex flex-col flex-nowrap">
+        <div class="mt-4 flex justify-between">
           <span class="flex-9 font-extrabold text-lg text-gray-900">{{
             product.name
           }}</span>
-          <base-button
+          <icon-button
             class="flex-1"
-            text="-"
+            iconClass="fa fa-plus"
             @click="$emit('delete-product')"
-            :negatif="true"
           />
         </div>
 
@@ -22,15 +23,14 @@
     <div class="mx-4 py-3 border-b border-gray-200">
       <div class="px-8">
         <div class="flex-col space-x-4 mb-4">
-          <div class="flex space-between">
+          <div class="flex justify-between">
             <span class="font-extrabold text-xl text-gray-900 my-4"
               >Sources sites</span
             >
-            <base-button
+            <icon-button
+              iconClass="fa fa-plus"
               class="flex-auto ml-5"
-              text="+"
               @click="showModal = true"
-              :negatif="false"
             />
           </div>
           <h1 v-if="sites.length === 0">No sites found for this product</h1>

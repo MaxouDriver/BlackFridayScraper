@@ -1,29 +1,28 @@
 <template>
-  <div class="flex flex-wrap">
+  <div class="flex justify-center m-7">
     <h1 v-if="products.length === 0">No product found</h1>
-    <base-button text="+" @click="showModal = true" :negatif="false" />
-    <wish-card
-      v-for="(product, index) in products"
-      v-bind:key="index"
-      :product="product"
-      @delete-product="() => deleteProduct(product)"
-    />
-    <product-modal
-      v-if="showModal"
-      @close="showModal = false"
-      @add-product="addProduct"
-    />
+    <icon-button iconClass="fa fa-plus" @click="showModal = true" />
   </div>
+  <wish-card
+    v-for="(product, index) in products"
+    v-bind:key="index"
+    :product="product"
+    @delete-product="() => deleteProduct(product)"
+  />
+  <product-modal
+    v-if="showModal"
+    @close="showModal = false"
+    @add-product="addProduct"
+  />
 </template>
 
 <script>
 import axios from "axios";
 import WishCard from "./WishCard.vue";
 import ProductModal from "./product/ProductModal.vue";
-import BaseButton from "../global/BaseButton.vue";
 
 export default {
-  components: { WishCard, BaseButton, ProductModal },
+  components: { WishCard, ProductModal },
   name: "wish-list",
   data() {
     return {

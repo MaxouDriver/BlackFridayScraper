@@ -1,7 +1,8 @@
 <template>
   <button
-    class="btn-default"
-    :class="{ 'bg-red-500': negatif, 'bg-blue-500': !negatif }"
+    class="btn-default text-pink-500 bg-transparent border border-solid border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase px-8 py-3 rounded-full outline-none focus:outline-none mr-1 mb-1"
+    type="button"
+    style="transition: all .15s ease"
   >
     {{ text }}
   </button>
@@ -19,10 +20,9 @@ export default {
 
 <style scoped>
 .btn-default {
-  width: 5vw;
-  height: 5vw;
-  max-width: 5vw;
-  max-height: 5vw;
-  @apply px-4 py-2 rounded text-white;
+  width: 2vw;
+  height: 2vw;
+  max-width: 2vw;
+  max-height: 2vw;
 }
 </style>
