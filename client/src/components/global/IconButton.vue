@@ -47,16 +47,4 @@ export default {
   max-width: 2vw;
   max-height: 2vw;
 }
-.btn-plus {
-  width: 2vw;
-  height: 2vw;
-  max-width: 2vw;
-  max-height: 2vw;
-}
-.btn-minus {
-  width: 2vw;
-  height: 2vw;
-  max-width: 2vw;
-  max-height: 2vw;
-}
 </style>

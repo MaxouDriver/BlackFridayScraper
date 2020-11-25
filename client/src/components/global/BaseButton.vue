@@ -1,8 +1,7 @@
 <template>
   <button
-    class="btn-default text-pink-500 bg-transparent border border-solid border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase px-8 py-3 rounded-full outline-none focus:outline-none mr-1 mb-1"
-    type="button"
-    style="transition: all .15s ease"
+    class="w-1/2 py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none rounded-full"
+    :type="type"
   >
     {{ text }}
   </button>
@@ -12,8 +11,14 @@
 export default {
   name: "base-button",
   props: {
-    text: String,
-    negatif: Boolean
+    text: {
+      type: String,
+      required: true
+    },
+    type: {
+      type: String,
+      default: "button"
+    }
   }
 };
 </script>

@@ -3,37 +3,56 @@
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
-          <div class="modal-header">
-            <h1>Add product</h1>
-          </div>
-
-          <div class="modal-body">
-            <slot name="body">
-              <span class="text-gray-700">Name</span>
-              <input
-                class="form-input mt-1 block w-full"
-                v-model="name"
-                placeholder="Name"
-              />
-
-              <span class="text-gray-700">Description</span>
-              <input
-                class="form-input mt-1 block w-full"
-                v-model="description"
-                placeholder="Description"
-              />
-            </slot>
-          </div>
-
-          <div class="modal-footer">
-            <slot name="footer">
-              <base-button
-                text="Cancel"
-                @click="$emit('close')"
-                :negatif="true"
-              />
-              <base-button text="Save" @click="addProduct" :negatif="false" />
-            </slot>
+          <div class="grid  place-items-center">
+            <div class="w-11/12 m-6 bg-white">
+              <h1 class="text-xl font-semibold">
+                Add a product,
+                <span class="font-normal">
+                  please fill in the informations to continue
+                </span>
+              </h1>
+              <form class="mt-6" v-on:submit.prevent="addProduct">
+                <div class="flex justify-between mt-2 gap-3">
+                  <span class="w-1/2">
+                    <label
+                      for="name"
+                      class="block text-xs font-semibold text-gray-600 uppercase"
+                    >
+                      Name
+                    </label>
+                    <input
+                      id="name"
+                      type="text"
+                      v-model="name"
+                      name="name"
+                      placeholder="Skate"
+                      class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                      required
+                    />
+                  </span>
+                  <span class="w-1/2">
+                    <label
+                      for="description"
+                      class="block text-xs font-semibold text-gray-600 uppercase"
+                    >
+                      Description
+                    </label>
+                    <input
+                      id="description"
+                      v-model="description"
+                      type="text"
+                      name="description"
+                      placeholder="Some informations"
+                      class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                    />
+                  </span>
+                </div>
+                <div class="flex justify-between mt-2 gap-3">
+                  <base-button text="Cancel" @click="$emit('close')" />
+                  <base-button type="submit" text="Save" />
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -42,10 +61,8 @@
 </template>
 
 <script>
-import BaseButton from "../../global/BaseButton.vue";
-
 export default {
-  components: { BaseButton },
+  components: {},
   name: "product-modal",
   data() {
     return {

@@ -11,7 +11,6 @@
         <router-link
           to="/"
           class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white"
-          href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation"
           >My deals</router-link
         ><button
           class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
@@ -23,14 +22,12 @@
       </div>
       <div
         class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none"
-        v-bind:class="{ hidden: !showMenu, block: showMenu }"
       >
         <ul class="flex flex-col lg:flex-row list-none mr-auto">
           <li class="flex items-center">
             <router-link
               to="/wish"
               class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-              href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/landing"
               ><i
                 class="lg:text-gray-300 text-gray-500 far fa-file-alt text-lg leading-lg mr-2"
               ></i>
