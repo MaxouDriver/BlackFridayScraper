@@ -34,7 +34,7 @@
             />
           </div>
           <h1 v-if="sites.length === 0">No sites found for this product</h1>
-          <link-card
+          <site-card
             v-for="(site, index) in sites"
             v-bind:key="index"
             :site="site"
@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <link-modal
+    <site-modal
       v-if="showModal"
       @close="showModal = false"
       @add-site="addSite"
@@ -53,15 +53,15 @@
 
 <script>
 import axios from "axios";
-import LinkCard from "./link/LinkCard";
-import LinkModal from "./link/LinkModal";
+import SiteCard from "./site/SiteCard";
+import SiteModal from "./site/SiteModal";
 
 export default {
   name: "wish-card",
   props: ["product"],
   components: {
-    LinkCard,
-    LinkModal
+    SiteCard,
+    SiteModal
   },
   data() {
     return {
@@ -113,9 +113,9 @@ export default {
 }
 
 .modal-container {
-  width: 300px;
+  width: 20%;
+  max-height: 80vh;
   margin: 0px auto;
-  padding: 20px 30px;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);

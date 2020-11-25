@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "link-card",
+  name: "site-card",
   props: ["site"]
 };
 </script>
