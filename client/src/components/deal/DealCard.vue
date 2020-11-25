@@ -10,12 +10,22 @@
           <i class="fas fa-award"></i>
         </div>
         <h6 class="text-xl font-semibold">{{ product.name }}</h6>
-
-        <h4 class="text-xl font-semibold">{{ siteWithLowestPrice.value }} €</h4>
-        <p class="mt-2 mb-4 text-gray-600">
-          Available on :
-          <a :href="siteWithLowestPrice.url">{{ siteWithLowestPrice.name }}</a>
-        </p>
+        <div v-if="siteWithLowestPrice">
+          <h4 class="text-xl font-semibold">
+            {{ siteWithLowestPrice.value }} €
+          </h4>
+          <p class="mt-2 mb-4 text-gray-600">
+            Available on :
+            <a :href="siteWithLowestPrice.url">
+              {{ siteWithLowestPrice.name }}
+            </a>
+          </p>
+        </div>
+        <div v-else>
+          <p class="text-xl font-semibold">
+            No site linked
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -39,8 +49,9 @@ export default {
   },
   methods: {
     getSiteWithLowestPrice() {
-      return this.product.sites.reduce((prev, current) =>
-        prev.value < current.value ? prev : current
+      return this.product.sites.reduce(
+        (prev, current) => (prev.value < current.value ? prev : current),
+        0
       );
     }
   }
