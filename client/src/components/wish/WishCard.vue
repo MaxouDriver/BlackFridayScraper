@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex-1 right-0 bottom-0 top-0 bg-white mt-20 rounded-lg shadow-lg mb-8"
+    class="flex-auto right-0 bottom-0 top-0 bg-white mt-20 rounded-lg shadow-lg mb-8"
   >
     <div class="flex flex-col mx-4 py-3 border-b border-gray-200">
       <div class="mt-4 p-4 flex flex-col flex-nowrap">
