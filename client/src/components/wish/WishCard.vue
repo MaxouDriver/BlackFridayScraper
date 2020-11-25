@@ -10,7 +10,7 @@
           }}</span>
           <icon-button
             class="flex-1"
-            iconClass="fa fa-plus"
+            iconClass="fa fa-minus"
             @click="$emit('delete-product')"
           />
         </div>
