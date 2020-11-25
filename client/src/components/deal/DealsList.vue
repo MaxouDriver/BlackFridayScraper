@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import DealCard from "./DealCard.vue";
 
 export default {
@@ -18,10 +17,12 @@ export default {
   name: "deal-list-view",
   data() {
     return {
-      loading: false,
-      products: [],
-      error: null
     };
+  },
+  computed: {
+    products(){
+      return this.$store.getters.productList
+    }
   },
   created() {
     this.fetchData();
@@ -32,17 +33,7 @@ export default {
   },
   methods: {
     fetchData() {
-      this.error = null;
-      this.post = [];
-      this.loading = true;
-      // replace `getPost` with your data fetching util / API wrapper
-      axios
-        .get("http://localhost:4000/products")
-        .then(response => {
-          this.loading = false;
-          this.products = response.data;
-        })
-        .catch(err => (this.error = err.toString()));
+      this.$store.dispatch("fetchProduct");
     }
   }
 };

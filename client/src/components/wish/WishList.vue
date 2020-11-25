@@ -28,14 +28,16 @@ export default {
   name: "wish-list",
   data() {
     return {
-      loading: false,
-      products: [],
-      error: null,
       showModal: false
     };
   },
   created() {
     this.fetchData();
+  },
+  computed: {
+    products(){
+      return this.$store.getters.productList
+    }
   },
   watch: {
     // call again the method if the route changes
@@ -43,16 +45,7 @@ export default {
   },
   methods: {
     fetchData() {
-      this.error = null;
-      this.products = [];
-      this.loading = true;
-      axios
-        .get("http://localhost:4000/products")
-        .then(response => {
-          this.loading = false;
-          this.products = response.data;
-        })
-        .catch(err => (this.error = err.toString()));
+      this.$store.dispatch("fetchProduct");
     },
     addProduct(product) {
       axios
