@@ -49,10 +49,10 @@ export default {
   },
   methods: {
     getSiteWithLowestPrice() {
-      return this.product.sites.reduce(
+      return this.product.sites ? this.product.sites.reduce(
         (prev, current) => (prev.value < current.value ? prev : current),
         0
-      );
+      ) : null;
     }
   }
 };

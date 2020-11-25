@@ -77,7 +77,10 @@ export default {
       axios
         .post("http://localhost:4000/sites", { site: site })
         .then(response => {
-          this.sites = [...this.sites, response.data];
+          if (response.status === 200) {
+            this.$store.dispatch("addProductSites", response.data);
+            this.sites = [...this.sites, response.data];
+          }
         })
         .catch(err => (this.error = err.toString()));
     },
@@ -85,8 +88,10 @@ export default {
       axios
         .delete("http://localhost:4000/sites/" + siteToDelete.id)
         .then(response => {
-          if (response.status === 200)
+          if (response.status === 200) {
+            this.$store.dispatch("deleteProductSites", siteToDelete);
             this.sites = this.sites.filter(site => site.id !== siteToDelete.id);
+          }
         })
         .catch(err => (this.error = err.toString()));
     }

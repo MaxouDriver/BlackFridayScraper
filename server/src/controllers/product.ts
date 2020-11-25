@@ -8,7 +8,7 @@ export class ProductController {
 
     async getAll(req: Request, res: Response): Promise<void> {
         res.send(await getRepository(Product).find({
-            relations: ["sites"]
+            relations: ["sites", "sites.product"]
         }));
     }
 

@@ -52,7 +52,7 @@ export default {
         .post("http://localhost:4000/products/", { product: product })
         .then(response => {
           if (response.status === 200)
-            this.products = [...this.products, response.data];
+            this.$store.dispatch("addProduct", response.data);
         })
         .catch(err => (this.error = err.toString()));
     },
@@ -61,9 +61,7 @@ export default {
         .delete("http://localhost:4000/products/" + productToDelete.id)
         .then(response => {
           if (response.status === 200)
-            this.products = this.products.filter(
-              product => product.id !== productToDelete.id
-            );
+            this.$store.dispatch("deleteProduct", productToDelete);
         })
         .catch(err => (this.error = err.toString()));
     }
