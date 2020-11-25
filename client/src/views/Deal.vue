@@ -14,7 +14,7 @@ import HeaderComponent from "../components/Header.vue";
 import DealsList from "../components/deal/DealsList.vue";
 
 export default {
-  name: "home-page",
+  name: "deal-page",
   components: {
     HeaderComponent,
     DealsList

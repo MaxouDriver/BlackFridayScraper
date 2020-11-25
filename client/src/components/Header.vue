@@ -1,6 +1,6 @@
 <template>
   <div
-    class="header relative flex content-center items-center justify-center"
+    class="gradient relative flex content-center items-center justify-center"
     style="min-height: 55vh;"
   >
     <div class="container relative mx-auto">
@@ -28,7 +28,5 @@ export default {
 </script>
 
 <style scoped>
-.header {
-  background-color: gray;
-}
+
 </style>
