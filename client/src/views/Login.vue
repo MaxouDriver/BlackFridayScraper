@@ -52,6 +52,7 @@
 <script>
 import axios from "axios";
 import BaseButton from '../components/global/BaseButton.vue';
+import constants from "../constants";
 
 export default {
   components: { BaseButton },
@@ -65,11 +66,12 @@ data() {
   },
   methods: {
     login() {
+      console.log(`http://${constants.API_HOST}:${constants.API_PORT}/auth/login`)
         if (this.email.trim() === "") this.error = "Email need a value";
         else if (this.password.trim() === "") this.error = "Password need a value";
         else
       axios
-        .post("http://localhost:4000/auth/login", {
+        .post(`http://${constants.API_HOST}:${constants.API_PORT}/auth/login`, {
             email: this.email,
             password: this.password
         })

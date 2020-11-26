@@ -56,6 +56,7 @@
 import axios from "axios";
 import SiteCard from "./site/SiteCard";
 import SiteModal from "./site/SiteModal";
+import constants from "../../constants";
 
 export default {
   name: "wish-card",
@@ -76,7 +77,7 @@ export default {
   methods: {
     addSite(site) {
       axios
-        .post("http://localhost:4000/sites", { site: site }, {
+        .post(`http://${constants.API_HOST}:${constants.API_PORT}/sites`, { site: site }, {
           headers: {
             Authorization: 'Bearer ' + this.$store.getters.authenticatedUser?.token
           }
@@ -89,12 +90,13 @@ export default {
           if (response.status === 401) this.$router.push("/")
         })
         .catch(err => {
-          if (err.response.status === 401)  this.$router.push("/")
+          if (err.response && err.response.status === 401)  this.$router.push("/")
+            else console.log(err)
         });
     },
     deleteSite(siteToDelete) {
       axios
-        .delete("http://localhost:4000/sites/" + siteToDelete.id, {
+        .delete(`http://${constants.API_HOST}:${constants.API_PORT}/sites/` + siteToDelete.id, {
           headers: {
             Authorization: 'Bearer ' + this.$store.getters.authenticatedUser?.token
           }
@@ -107,7 +109,8 @@ export default {
           if (response.status === 401) this.$router.push("/")
         })
         .catch(err => {
-          if (err.response.status === 401)  this.$router.push("/")
+          if (err.response && err.response.status === 401)  this.$router.push("/")
+            else console.log(err)
         });
     }
   }

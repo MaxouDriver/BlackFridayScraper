@@ -8,19 +8,24 @@ services:
 
   scraper-server:
     build: ./server
-    volumes:
-      - ./server:/usr/src/server
-      - /usr/src/server/node_modules
-    tty: true
     container_name: scraper-server
+    depends_on:
+      - scraper-db
     environment:
-      - PG_HOST=scraper-db
-      - PG_PORT=5432
-      - API_PREFIX=/
-      - API_PORT=4000
-      - DB_SYNC=false
-      - DB_LOGGING=false
+      WAIT_HOSTS: scraper-db:5432 
+    env_file:
+      - ./server/.env
     ports:
       - 4000:4000
     links:
       - scraper-db
+
+  scraper-client:
+    build: ./client
+    container_name: scraper-client
+    depends_on:
+      - scraper-server
+    ports:
+      - 8080:8080
+    links:
+      - scraper-server

@@ -8,6 +8,6 @@ createConnection().then(async connection => {
     app.listen(process.env.API_PORT, () => {
         console.log("Express server listening on port " + process.env.API_PORT);
     })
-}).catch(() => {
-    console.log("unable to connect");
+}).catch((err) => {
+    console.log("unable to connect", err);
 });

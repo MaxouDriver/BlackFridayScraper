@@ -22,6 +22,7 @@
 import axios from "axios";
 import WishCard from "./WishCard.vue";
 import ProductModal from "./product/ProductModal.vue";
+import constants from "../../constants";
 
 export default {
   components: { WishCard, ProductModal },
@@ -46,7 +47,7 @@ export default {
   methods: {
     fetchData() {
       axios
-        .get("http://localhost:4000/products", {
+        .get(`http://${constants.API_HOST}:${constants.API_PORT}/products`, {
           headers: {
             Authorization: 'Bearer ' + this.$store.getters.authenticatedUser?.token
           }
@@ -56,12 +57,13 @@ export default {
             if (response.status === 401)  this.$router.push("/")
         })
         .catch(err => {
-          if (err.response.status === 401)  this.$router.push("/")
+          if (err.response && err.response.status === 401)  this.$router.push("/")
+            else console.log(err)
         });
     },
     addProduct(product) {
       axios
-        .post("http://localhost:4000/products/", { product: product }, {
+        .post(`http://${constants.API_HOST}:${constants.API_PORT}/products/`, { product: product }, {
           headers: {
             Authorization: 'Bearer ' + this.$store.getters.authenticatedUser?.token
           }
@@ -73,12 +75,13 @@ export default {
           if (response.status === 401) this.$router.push("/")
         })
         .catch(err => {
-          if (err.response.status === 401)  this.$router.push("/")
+          if (err.response && err.response.status === 401)  this.$router.push("/")
+            else console.log(err)
         });
     },
     deleteProduct(productToDelete) {
       axios
-        .delete("http://localhost:4000/products/" + productToDelete.id, {
+        .delete(`http://${constants.API_HOST}:${constants.API_PORT}/products/` + productToDelete.id, {
           headers: {
             Authorization: 'Bearer ' + this.$store.getters.authenticatedUser?.token
           }
@@ -90,7 +93,8 @@ export default {
           if (response.status === 401) this.$router.push("/")
         })
         .catch(err => {
-          if (err.response.status === 401)  this.$router.push("/")
+          if (err.response && err.response.status === 401)  this.$router.push("/")
+            else console.log(err)
         });
     }
   }

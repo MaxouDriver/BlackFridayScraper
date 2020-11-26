@@ -15,4 +15,5 @@ export = {
    "migrations": [
       "src/migrations/*.ts"
    ],
+   "reconnectInterval": 5000
 }

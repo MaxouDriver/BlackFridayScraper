@@ -59,6 +59,7 @@
 
 <script>
 import axios from "axios";
+import constants from "../constants";
 
 export default {
     name: "register",
@@ -77,7 +78,7 @@ export default {
         else if (this.password !== this.passwordConfirmation) this.error = "The two password need to be identical";
         else
             axios
-                .post("http://localhost:4000/auth/register", {
+                .post(`http://${constants.API_HOST}:${constants.API_PORT}/auth/register`, {
                     email: this.email,
                     password: this.password
                 })

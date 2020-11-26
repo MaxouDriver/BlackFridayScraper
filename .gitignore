@@ -3,3 +3,4 @@ docker-compose.override.yml
 server/node_modules
 client/mode_modules
 server/.env
+client/.env

@@ -12,6 +12,7 @@
 <script>
 import DealCard from "./DealCard.vue";
 import axios from "axios";
+import constants from "../../constants";
 
 export default {
   components: { DealCard },
@@ -31,7 +32,7 @@ export default {
   methods: {
     fetchData() {
       axios
-        .get("http://localhost:4000/products", {
+        .get(`http://${constants.API_HOST}:${constants.API_PORT}/products`, {
           headers: {
             Authorization: 'Bearer ' + this.$store.getters.authenticatedUser?.token
           }
@@ -41,7 +42,8 @@ export default {
             if (response.status === 401) this.$router.push("/")
         })
         .catch(err => {
-          if (err.response.status === 401)  this.$router.push("/")
+          if (err.response && err.response.status === 401)  this.$router.push("/")
+            else console.log(err)
         });
     },
   }
