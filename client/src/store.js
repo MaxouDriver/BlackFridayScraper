@@ -34,8 +34,6 @@ const store = createStore({
                     return {
                         ...product,
                         sites: product.sites.filter(site => {
-                            console.log(site.id, payload.id)
-                            console.log(site.id !== payload.id)
                             return site.id !== payload.id
                         })
                     } 
@@ -48,7 +46,6 @@ const store = createStore({
             state.products = payload
         },
         setUser(state, payload){
-            console.log(payload)
             state.authenticatedUser = payload
         }
     },

@@ -66,7 +66,6 @@ data() {
   },
   methods: {
     login() {
-      console.log(`http://${constants.API_HOST}:${constants.API_PORT}/auth/login`)
         if (this.email.trim() === "") this.error = "Email need a value";
         else if (this.password.trim() === "") this.error = "Password need a value";
         else
@@ -80,6 +79,7 @@ data() {
             this.$store.dispatch("setUser", response.data);
             this.$router.push("/")
           }
+          else if (response.status === 404) this.error = "No account found with the given email."
           else this.error = response.data
         })
         .catch(err => {
