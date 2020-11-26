@@ -75,23 +75,33 @@ export default {
   methods: {
     addSite(site) {
       axios
-        .post("http://localhost:4000/sites", { site: site })
+        .post("http://localhost:4000/sites", { site: site }, {
+          headers: {
+            Authorization: 'Bearer ' + this.$store.getters.authenticatedUser?.token
+          }
+        })
         .then(response => {
           if (response.status === 200) {
             this.$store.dispatch("addProductSites", response.data);
             this.sites = [...this.sites, response.data];
           }
+          if (response.status === 401) this.$router.push("/")
         })
         .catch(err => (this.error = err.toString()));
     },
     deleteSite(siteToDelete) {
       axios
-        .delete("http://localhost:4000/sites/" + siteToDelete.id)
+        .delete("http://localhost:4000/sites/" + siteToDelete.id, {
+          headers: {
+            Authorization: 'Bearer ' + this.$store.getters.authenticatedUser?.token
+          }
+        })
         .then(response => {
           if (response.status === 200) {
             this.$store.dispatch("deleteProductSites", siteToDelete);
             this.sites = this.sites.filter(site => site.id !== siteToDelete.id);
           }
+          if (response.status === 401) this.$router.push("/")
         })
         .catch(err => (this.error = err.toString()));
     }

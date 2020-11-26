@@ -45,23 +45,45 @@ export default {
   },
   methods: {
     fetchData() {
-      this.$store.dispatch("fetchProduct");
+      axios
+        .get("http://localhost:4000/products", {
+          headers: {
+            Authorization: 'Bearer ' + this.$store.getters.authenticatedUser?.token
+          }
+        })
+        .then(response => {
+            if (response.status === 200) this.$store.dispatch("setProduct", response.data);
+            if (response.status === 401) this.$router.push("/")
+        })
+        .catch(err => console.log(err));
     },
     addProduct(product) {
       axios
-        .post("http://localhost:4000/products/", { product: product })
+        .post("http://localhost:4000/products/", { product: product }, {
+          headers: {
+            Authorization: 'Bearer ' + this.$store.getters.authenticatedUser?.token
+          }
+        })
         .then(response => {
           if (response.status === 200)
             this.$store.dispatch("addProduct", response.data);
+
+          if (response.status === 401) this.$router.push("/")
         })
         .catch(err => (this.error = err.toString()));
     },
     deleteProduct(productToDelete) {
       axios
-        .delete("http://localhost:4000/products/" + productToDelete.id)
+        .delete("http://localhost:4000/products/" + productToDelete.id, {
+          headers: {
+            Authorization: 'Bearer ' + this.$store.getters.authenticatedUser?.token
+          }
+        })
         .then(response => {
           if (response.status === 200)
             this.$store.dispatch("deleteProduct", productToDelete);
+
+          if (response.status === 401) this.$router.push("/")
         })
         .catch(err => (this.error = err.toString()));
     }

@@ -1,11 +1,10 @@
 import { createStore } from "vuex";
 
-import axios from "axios";
-
 const store = createStore({
     state(){
         return {
-            products: []
+            products: [],
+            authenticatedUser: undefined
         }
     },
     mutations: { 
@@ -47,6 +46,10 @@ const store = createStore({
         },
         set(state, payload){
             state.products = payload
+        },
+        setUser(state, payload){
+            console.log(payload)
+            state.authenticatedUser = payload
         }
     },
     actions: {
@@ -62,19 +65,20 @@ const store = createStore({
         deleteProductSites(context, payload){
             context.commit('deleteProductSites', payload)
         },
-        fetchProduct(context){
-            axios
-            .get("http://localhost:4000/products")
-            .then(response => {
-                context.commit('set', response.data)
-            })
-            .catch(err => console.log(err));
-        }
+        setProduct(context, payload){
+            context.commit('set', payload)
+        },
+        setUser(context, payload){
+            context.commit('setUser', payload)
+        },
     },
     getters: {
         productList(state){
             return state.products
-        }
+        },
+        authenticatedUser(state){
+            return state.authenticatedUser
+        },
     }
 })
 

@@ -23,32 +23,31 @@
                     exact
                     >Home</router-link>
                 </li>
-                <li class="mr-3">
-                  <router-link
-                    to="/deals"
-                    class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                    >My deals</router-link>
-                </li>
-                <li class="mr-3">
-                  <router-link
-                      to="/wishs"
-                      class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                    >My wishs</router-link>
-                </li>
+                <keep-alive>
+                    <component 
+                    :is="currentNavComponent"
+                    ></component>
+                </keep-alive>
             </ul>
-            <!-- <button
-                id="navAction"
-                class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
-            >
-                Action
-            </button> -->
             </div>
         </div>
         <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
       </nav>
 </template>
 <script>
+import NotAuthenticated from './links/NotAuthenticated.vue';
+import Authenticated from './links/Authenticated.vue';
+
 export default {
-  name: "navbar"
+  name: "navbar",
+  components: {
+    NotAuthenticated,
+    Authenticated
+  },
+  computed: {
+    currentNavComponent(){
+      return this.$store.getters.authenticatedUser !== undefined ? "authenticated" : "not-authenticated"
+    }
+  },
 };
 </script>

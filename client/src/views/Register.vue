@@ -1,5 +1,5 @@
 <template>
-    <div class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
+  <div class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
         <!--Hero-->
         <div class="pt-24">
         <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
@@ -83,42 +83,11 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
-    name: "landing-page",
-    created() {
-        this.fetchUser();
-    },
-    computed: {
-        products(){
-            return this.$store.getters.productList
-        }
-    },
-    watch: {
-        // call again the method if the route changes
-        $route: "fetchUser"
-    },
-    methods: {
-        fetchUser() {
-            axios
-            .post("http://localhost:4000/user", {
-          headers: {
-            Authorization: 'Bearer ' + this.$store.getters.authenticatedUser?.token
-          }
-        })
-            .then(response => {
-            if (response.status === 200)
-                this.$store.dispatch("setUser", response.data);
-            })
-            .catch(err => (this.error = err.toString()));
-        }
-    }
+
 }
 </script>
 
 <style>
-.gradient {
-    background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
-}
+
 </style>
