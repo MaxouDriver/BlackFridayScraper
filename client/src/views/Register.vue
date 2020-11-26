@@ -1,24 +1,43 @@
 <template>
-  <div class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
-        <!--Hero-->
-        <div class="pt-24">
-        <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-            <!--Left Col-->
-            <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-            <h1 class="my-4 text-5xl font-bold leading-tight">
-                The web site you need to help you get the best deal in time !
-            </h1>
-            <p class="leading-normal text-2xl mb-8">
-                Want to start getting the bests deals, register now !
-            </p>
-            </div>
-            <!--Right Col-->
-            <div class="w-full md:w-3/5 py-6 text-center">
-            <img class="w-full md:w-4/5 z-50" src="black-friday.png" />
-            </div>
+  <div class="leading-normal tracking-normal gradient" style="font-family: 'Source Sans Pro', sans-serif;">
+        <div class="absolute z-50 inset-x-1/4 inset-y-1/4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+        <div class="mb-4">
+            <label class="block text-grey-darker text-sm font-bold mb-2" for="email">
+                Email
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" 
+            id="email" type="text" v-model="email" placeholder="Email">
         </div>
+        <div class="mb-6">
+            <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
+                Password
+            </label>
+            <input class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" 
+            id="password" type="password" v-model="password" placeholder="******************">
+            <p v-if="password.length === 0" class="text-red-500 text-xs italic">Please choose a password.</p>
         </div>
-        <div class="relative -mt-12 lg:-mt-24">
+        <div class="mb-6">
+            <label class="block text-grey-darker text-sm font-bold mb-2" for="passwordConfirmation">
+                Password confirmation
+            </label>
+            <input class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" 
+            id="passwordConfirmation" type="password" v-model="passwordConfirmation" placeholder="******************">
+            <p v-if="password !== passwordConfirmation" class="text-red-500 text-xs italic">The two given password need to be identical.</p>
+            <p v-if="error" class="text-red-500 text-xs italic">{{error}}</p>
+        </div>
+        <div class="flex items-center justify-between">
+            <button class="bg-blue hover:bg-blue-dark font-bold py-2 px-4 rounded" :disabled="password !== passwordConfirmation" type="button" @click="register">
+                Register
+            </button>
+            
+            <router-link
+                to="/login"
+                class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker"
+                >Already have an account, let's sign in ?</router-link>
+
+        </div>
+    </div>
+        <div class="relative -mt-12 lg:-mt-24 pt-24">
         <svg viewBox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g transform="translate(-2.000000, 44.000000)" fill="#FFFFFF" fill-rule="nonzero">
@@ -37,54 +56,45 @@
             </g>
         </svg>
         </div>
-        <section class="bg-white border-b py-8">
-        <div class="container max-w-5xl mx-auto m-8">
-            <div class="w-full mb-4">
-            <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
-            </div>
-            <div class="flex flex-wrap">
-            <div class="w-5/6 sm:w-1/2 p-6">
-                <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                First start by adding a product to your wishlist.
-                </h3>
-                <p class="text-gray-600 mb-8">
-                After your product is added you need to add site related.
-                </p>
-            </div>
-            <div class="w-full sm:w-1/2 p-6">
-                <title>shopping cart</title>
-                
-                <img class="w-full md:w-4/5 z-50" src="list.png" />
-            </div>
-            </div>
-            <div class="flex flex-wrap flex-col-reverse sm:flex-row">
-            <div class="w-full sm:w-1/2 p-6 mt-6">
-                
-                <title>connected world</title>
-                <img class="w-full md:w-4/5 z-50" src="deals.png" />
-            </div>
-            <div class="w-full sm:w-1/2 p-6 mt-6">
-                <div class="align-middle">
-                <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                    And them just check out sometimes the deals page.
-                </h3>
-                <p class="text-gray-600 mb-8">
-                    The deal page help you see all the product of your wishlist with the best deal.
-                    <br />
-                    <br />
-                    The best deal come from the sites you added earlier and the price is updated to show you in real time the best price possible.
-                </p>
-                </div>
-            </div>
-            </div>
-        </div>
-        </section>
     </div>
 </template>
 
 <script>
-export default {
+import axios from "axios";
 
+export default {
+    name: "register",
+    data() {
+    return {
+      email: "",
+      password: "",
+      passwordConfirmation: "",
+      error: undefined
+    };
+  },
+  methods: {
+    register() {
+        if (this.email.trim() === "") this.error = "Email need a value";
+        else if (this.password.trim() === "") this.error = "Password need a value";
+        else if (this.password !== this.passwordConfirmation) this.error = "The two password need to be identical";
+        else
+            axios
+                .post("http://localhost:4000/auth/register", {
+                    email: this.email,
+                    password: this.password
+                })
+                .then(response => {
+                    if (response.status === 201){
+                        this.$store.dispatch("setUser", response.data);
+                        this.$router.push("/")
+                    }
+                    else this.error = response.data
+                })
+                .catch(err => {
+                    console.log(err)
+                });
+    }
+  }
 }
 </script>
 
