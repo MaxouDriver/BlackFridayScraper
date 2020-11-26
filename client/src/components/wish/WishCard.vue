@@ -47,6 +47,7 @@
       v-if="showModal"
       @close="showModal = false"
       @add-site="addSite"
+      :product="product"
     />
   </div>
 </template>

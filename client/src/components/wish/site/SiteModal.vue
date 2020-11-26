@@ -103,22 +103,6 @@
                       required
                     />
                   </span>
-                  <span class="w-1/2">
-                    <label
-                      for="productId"
-                      class="block text-xs font-semibold text-gray-600 uppercase"
-                    >
-                      ProductId
-                    </label>
-                    <input
-                      id="productId"
-                      v-model="productId"
-                      type="text"
-                      name="productId"
-                      placeholder="1"
-                      class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
-                    />
-                  </span>
                 </div>
 
                 <div class="flex justify-between mt-2 gap-3">
@@ -149,13 +133,13 @@
 export default {
   components: {},
   name: "site-modal",
+  props: ["product"],
   data() {
     return {
       name: "",
       url: "",
       htmlTarget: "",
       value: "",
-      productId: -1
     };
   },
   created() {},
@@ -167,7 +151,7 @@ export default {
         url: this.url,
         htmlTarget: this.htmlTarget,
         value: this.value,
-        productId: this.productId
+        productId: this.product.id
       });
       this.$emit("close");
     }
