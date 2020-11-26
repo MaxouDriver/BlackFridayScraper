@@ -44,7 +44,9 @@ export default {
             if (response.status === 200) this.$store.dispatch("setProduct", response.data);
             if (response.status === 401) this.$router.push("/")
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          if (err.response.status === 401)  this.$router.push("/")
+        });
     },
   }
 };

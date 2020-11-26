@@ -87,7 +87,9 @@ export default {
           }
           if (response.status === 401) this.$router.push("/")
         })
-        .catch(err => (this.error = err.toString()));
+        .catch(err => {
+          if (err.response.status === 401)  this.$router.push("/")
+        });
     },
     deleteSite(siteToDelete) {
       axios
@@ -103,7 +105,9 @@ export default {
           }
           if (response.status === 401) this.$router.push("/")
         })
-        .catch(err => (this.error = err.toString()));
+        .catch(err => {
+          if (err.response.status === 401)  this.$router.push("/")
+        });
     }
   }
 };

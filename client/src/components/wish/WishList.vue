@@ -53,9 +53,11 @@ export default {
         })
         .then(response => {
             if (response.status === 200) this.$store.dispatch("setProduct", response.data);
-            if (response.status === 401) this.$router.push("/")
+            if (response.status === 401)  this.$router.push("/")
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          if (err.response.status === 401)  this.$router.push("/")
+        });
     },
     addProduct(product) {
       axios
@@ -70,7 +72,9 @@ export default {
 
           if (response.status === 401) this.$router.push("/")
         })
-        .catch(err => (this.error = err.toString()));
+        .catch(err => {
+          if (err.response.status === 401)  this.$router.push("/")
+        });
     },
     deleteProduct(productToDelete) {
       axios
@@ -85,7 +89,9 @@ export default {
 
           if (response.status === 401) this.$router.push("/")
         })
-        .catch(err => (this.error = err.toString()));
+        .catch(err => {
+          if (err.response.status === 401)  this.$router.push("/")
+        });
     }
   }
 };

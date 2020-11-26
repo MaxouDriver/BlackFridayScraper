@@ -77,7 +77,9 @@ data() {
           }
           else this.error = response.data
         })
-        .catch(err => (this.error = err.toString()));
+        .catch(err => {
+          console.log(err)
+        });
     }
   }
 }

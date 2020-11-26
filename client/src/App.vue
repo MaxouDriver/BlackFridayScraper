@@ -29,7 +29,9 @@ export default {
               if (response.status === 401)
                   this.$store.dispatch("deleteUser");
               })
-            .catch(err => (console.log(err.toString())));
+           .catch(err => {
+            if (err.response.status === 401)  this.$router.push("/")
+          });
         }
     }
 };

@@ -4,7 +4,7 @@ const store = createStore({
     state(){
         return {
             products: [],
-            authenticatedUser: localStorage.authenticatedUser !== undefined ? JSON.parse(localStorage.authenticatedUser) : undefined
+            authenticatedUser: (localStorage.authenticatedUser !== undefined && localStorage.authenticatedUser !== "undefined") ? JSON.parse(localStorage.authenticatedUser) : undefined
         }
     },
     mutations: { 
