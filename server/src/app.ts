@@ -17,10 +17,10 @@ class App {
     this.config();
     this.routePrv.routes(this.app);
 
-    const job = new cron.CronJob('* 30 * * * *', () => {
-      this.scraperController.scrapSites()
-    }, null, true, 'Europe/Paris');
-    job.start();
+    // const job = new cron.CronJob('* 30 * * * *', () => {
+    //   this.scraperController.scrapSites()
+    // }, null, true, 'Europe/Paris');
+    // job.start();
   }
 
   private config(): void {
