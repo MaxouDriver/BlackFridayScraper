@@ -16,10 +16,6 @@ import axios from "axios";
 export default {
   components: { DealCard },
   name: "deal-list-view",
-  data() {
-    return {
-    };
-  },
   computed: {
     products(){
       return this.$store.getters.productList

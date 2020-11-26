@@ -1,7 +1,7 @@
 <template>
   <header-component
     title="Your custom Black Friday deals."
-    description="This web site help you manage the product your want. By simply adding them to your wishlist and the lowest price will be showned bellow."
+    description="This web site help you manage all the product you want. By simply adding them to your wishlist and the lowest price will be showned bellow."
   />
   <section>
     <div class="container mx-auto px-4">

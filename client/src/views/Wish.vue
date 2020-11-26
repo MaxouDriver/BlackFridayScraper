@@ -1,7 +1,7 @@
 <template>
   <header-component
-    title="Your wishs."
-    description="Feel free to add news products in your wishlist."
+    title="Your wishes."
+    description="Feel free to add news product in your wishlist."
   />
   <section>
     <div class="container mx-auto px-4">

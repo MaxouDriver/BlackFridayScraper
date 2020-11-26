@@ -23,7 +23,7 @@
             <router-link
                 to="/register"
                 class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker"
-                >Doesn't already have an account, let's create one ?</router-link>
+                >Doesn't already have an account, let's create one !</router-link>
 
         </div>
     </div>

@@ -1,5 +1,5 @@
-import {Router, Request, Response} from 'express';
-import { getConnection, getRepository, Repository } from 'typeorm';
+import { Request, Response } from 'express';
+import { getRepository } from 'typeorm';
 import { Site } from '../entities/site';
 
 export class SiteController {

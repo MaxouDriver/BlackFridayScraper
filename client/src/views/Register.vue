@@ -31,7 +31,7 @@
             <router-link
                 to="/login"
                 class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker"
-                >Already have an account, let's sign in ?</router-link>
+                >Already have an account, let's sign in !</router-link>
 
         </div>
     </div>

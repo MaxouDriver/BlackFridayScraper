@@ -7,9 +7,9 @@
     </li>
     <li class="mr-3">
         <router-link
-            to="/wishs"
+            to="/wishes"
             class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-            >My wishs</router-link>
+            >My wishes</router-link>
     </li>
     <li class="mr-3">
         <button

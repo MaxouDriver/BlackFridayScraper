@@ -9,7 +9,7 @@ import Register from "./views/Register";
 const routes = [
   { path: "/login", component: Login },
   { path: "/register", component: Register },
-  { path: "/wishs", component: Wish },
+  { path: "/wishes", component: Wish },
   { path: "/deals", component: Deal },
   { path: "/", component: Landing }
 ];

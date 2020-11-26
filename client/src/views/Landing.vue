@@ -48,25 +48,21 @@
                 First start by adding a product to your wishlist.
                 </h3>
                 <p class="text-gray-600 mb-8">
-                After your product is added you need to add site related.
+                After your product is added you need to add site related. It will allow the website to check for you if the price has changed, but for that you need to indicate where to find it.
                 </p>
             </div>
             <div class="w-full sm:w-1/2 p-6">
-                <title>shopping cart</title>
-                
                 <img class="w-full md:w-4/5 z-50" src="list.png" />
             </div>
             </div>
             <div class="flex flex-wrap flex-col-reverse sm:flex-row">
             <div class="w-full sm:w-1/2 p-6 mt-6">
-                
-                <title>connected world</title>
                 <img class="w-full md:w-4/5 z-50" src="deals.png" />
             </div>
             <div class="w-full sm:w-1/2 p-6 mt-6">
                 <div class="align-middle">
                 <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                    And them just check out sometimes the deals page.
+                    And then just regulary check out the deals page .
                 </h3>
                 <p class="text-gray-600 mb-8">
                     The deal page help you see all the product of your wishlist with the best deal.
