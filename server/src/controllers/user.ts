@@ -4,7 +4,13 @@ import { User } from '../entities/user';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-export class AuthenticationController { 
+export class UserController { 
+    async get(req: any, res: Response): Promise<any> {
+        return res.status(200).json(await getRepository(User).findOne(req.user.userId, {
+            select: ["id", "email"]
+        }))
+    }
+
     async login(req: Request, res: Response): Promise<any> {
         const {
             email,

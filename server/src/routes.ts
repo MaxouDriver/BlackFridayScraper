@@ -1,16 +1,17 @@
 import express from "express";
 import { ProductController } from "./controllers/product";
 import { SiteController } from "./controllers/site";
-import { AuthenticationController } from "./controllers/authentication";
+import { UserController } from "./controllers/user";
 
 export class Routes {
   public productController: ProductController = new ProductController();
   public siteController: SiteController = new SiteController();
-  public authenticationController: AuthenticationController = new AuthenticationController();
+  public userController: UserController = new UserController();
 
   public routes(app: express.Application): void {
-    app.route("/auth/login").post(this.authenticationController.login);
-    app.route("/auth/register").post(this.authenticationController.register);
+    app.route("/auth/login").post(this.userController.login);
+    app.route("/auth/register").post(this.userController.register);
+    app.route("/user").get(this.userController.get);
 
     app.route("/products").get(this.productController.getAll);
     app.route("/products").post(this.productController.addOne);
