@@ -1,20 +1,25 @@
 import express, { Router, Response, Request } from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
-import morgan from 'morgan';
-import path from 'path';
-import { createStream } from 'rotating-file-stream';
+import cron from "cron";
 import cors, { CorsOptions, CorsOptionsDelegate } from 'cors';
 import { Routes } from "./routes";
+import { ScraperController } from "./controllers/scraper";
 
 class App {
   public app: express.Application;
   public routePrv: Routes = new Routes();
+  public scraperController: ScraperController = new ScraperController();
 
   constructor() {
     this.app = express();
     this.config();
     this.routePrv.routes(this.app);
+
+    const job = new cron.CronJob('* 30 * * * *', () => {
+      this.scraperController.scrapSites()
+    }, null, true, 'Europe/Paris');
+    job.start();
   }
 
   private config(): void {

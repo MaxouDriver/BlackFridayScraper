@@ -1,8 +1,6 @@
-import {Router, Request, Response} from 'express';
-import { getConnection, getRepository, Repository } from 'typeorm';
-import { ScraperController } from './scraper';
+import { Request, Response} from 'express';
+import { getRepository } from 'typeorm';
 import { Product } from '../entities/product';
-import { Site } from '../entities/site';
 
 export class ProductController { 
 
@@ -26,22 +24,5 @@ export class ProductController {
     async addOne(req: Request, res: Response): Promise<void> {
         const { product } = req.body
         res.send(await getRepository(Product).save(product));
-    }
-
-
-    public getDeals(req: Request, res: Response): void {
-        const {
-            url,
-            htmlTarget,
-            id
-        } = req.params
-        
-     const scraperController: ScraperController = new ScraperController();
-
-         getRepository(Product).findOneOrFail(parseInt(id), {
-            relations: ["sites"]
-        }).then(async product => {
-            res.send(await scraperController.scrapSteam(product.sites[0].url, product.sites[0].htmlTarget))
-        })
     }
 }
