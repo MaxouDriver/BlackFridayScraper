@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from "typeorm";
 import { Site } from "./site";
+import { User } from "./user";
 
 @Entity()
 export class Product {
@@ -18,4 +19,7 @@ export class Product {
 
     @OneToMany(site => Site, site => site.product)
     sites: Site[];
+
+    @ManyToOne(user => User, user => user.products, { onDelete: 'CASCADE' })
+    user: User;
 }

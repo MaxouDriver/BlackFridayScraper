@@ -5,6 +5,7 @@ import cron from "cron";
 import cors, { CorsOptions, CorsOptionsDelegate } from 'cors';
 import { Routes } from "./routes";
 import { ScraperController } from "./controllers/scraper";
+import verifyJSONWebToken from "./middlewares/authentication"
 
 class App {
   public app: express.Application;
@@ -34,7 +35,7 @@ class App {
     this.app.use(bodyParser.urlencoded({extended: false}));
     this.app.use(cookieParser());
     this.app.use(cors(enableOriginsForCredentials));
-
+    this.app.use(verifyJSONWebToken);
   }
 }
 

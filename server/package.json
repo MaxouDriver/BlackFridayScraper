@@ -11,7 +11,10 @@
     "migration:generate": "ts-node ./node_modules/typeorm/cli migration:generate -n "
   },
   "dependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/jsonwebtoken": "^8.5.0",
     "axios": "^0.21.0",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
@@ -19,6 +22,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.0",
     "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.3",
     "parse5": "^6.0.1",
@@ -33,11 +37,11 @@
     "xpath": "^0.0.32"
   },
   "devDependencies": {
-    "@types/cron": "^1.7.2",
     "@types/bcryptjs": "^2.4.2",
     "@types/body-parser": "^1.17.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.6",
+    "@types/cron": "^1.7.2",
     "@types/express": "^4.16.1",
     "@types/morgan": "^1.9.1",
     "@types/pg": "^7.14.3"
