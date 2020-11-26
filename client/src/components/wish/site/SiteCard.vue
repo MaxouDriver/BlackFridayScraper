@@ -2,7 +2,7 @@
   <p class="text-sm font-bold text-gray-600 flex items-center">
     {{ site.name }}
   </p>
-  <div class="flex">
+  <div class="flex overflow-auto">
     <a :href="site.url" class="text-sm text-gray-600 flex-auto items-center">
       {{ site.url }}
     </a>
