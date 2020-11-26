@@ -1,6 +1,6 @@
 <template>
   <button
-    class="btn-default border border-solid font-bold uppercase py-3 rounded-full outline-none focus:outline-none mr-1 mb-1"
+    class="btn-default border border-solid font-bold uppercase rounded-full outline-none focus:outline-none"
     :class="colorClass"
     type="button"
     style="transition: all .15s ease"

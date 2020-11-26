@@ -3,7 +3,7 @@
     <h1 v-if="products.length === 0">No product found</h1>
     <icon-button iconClass="fa fa-plus" @click="showModal = true" />
   </div>
-  <div class="flex justify-start flex-wrap mt-10 gap-10">
+  <div class="flex justify-start flex-wrap mt-10">
     <wish-card
       v-for="(product, index) in products"
       v-bind:key="index"

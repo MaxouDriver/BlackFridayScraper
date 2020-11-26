@@ -1,8 +1,9 @@
 <template>
   <div
-    class="flex-1 right-0 bottom-0 top-0 bg-white mt-20 rounded-lg shadow-lg mb-8"
+    class="w-full lg:w-1/3 p-4"
   >
-    <div class="flex flex-col mx-4 py-3 border-b border-gray-200">
+  <div class="right-0 bottom-0 top-0 bg-white mt-20 rounded-lg shadow-lg mb-8">
+    <div class="flex flex-col mx-4 p-3 border-b border-gray-200">
       <div class="mt-4 p-4 flex flex-col flex-nowrap">
         <div class="mt-4 flex justify-between">
           <span class="flex-9 font-extrabold text-lg text-gray-900">{{
@@ -49,6 +50,7 @@
       @add-site="addSite"
       :product="product"
     />
+  </div>
   </div>
 </template>
 
