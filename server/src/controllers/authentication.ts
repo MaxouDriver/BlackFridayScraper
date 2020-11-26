@@ -5,7 +5,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export class AuthenticationController { 
-
     async login(req: Request, res: Response): Promise<any> {
         const {
             email,
@@ -35,7 +34,12 @@ export class AuthenticationController {
                 });
             }
 
-            const jwtToken = this.createToken(user)
+            const jwtToken = jwt.sign({
+                email: user.email,
+                userId: user.id
+            }, "longer-secret-is-better", {
+                expiresIn: "12h"
+            });
 
             res.status(200).json({
                 token: jwtToken
@@ -47,18 +51,35 @@ export class AuthenticationController {
         });
     }
 
-    register(req: Request, res: Response): any {
+    async register(req: Request, res: Response): Promise<any> {
         const {
             email,
             password
         } = req.body;
+
+        const user = await getRepository(User).findOne({
+            where: {
+                email: email
+            }
+        });
+
+        if (user) {
+            return res.status(304).json({
+                message: "An user with this email already exists"
+            });
+        }
 
         bcrypt.hash(password, 10).then(async (hash) => {
             getRepository(User).save({
                 email: email,
                 password: hash
             }).then((response) => {
-                const jwtToken = this.createToken(response)
+                const jwtToken = jwt.sign({
+                    email: response.email,
+                    userId: response.id
+                }, "longer-secret-is-better", {
+                    expiresIn: "12h"
+                });
 
                 res.status(201).json({
                     message: "User successfully created!",
@@ -70,16 +91,5 @@ export class AuthenticationController {
                 });
             });
         });
-    }
-
-    private createToken(user: User){
-        const jwtToken = jwt.sign({
-            email: user.email,
-            userId: user.id
-        }, "longer-secret-is-better", {
-            expiresIn: "12h"
-        });
-
-        return jwtToken
     }
 }
