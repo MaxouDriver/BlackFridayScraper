@@ -4,9 +4,10 @@ import { Product } from '../entities/product';
 
 export class ProductController { 
 
-    async getAll(req: Request, res: Response): Promise<void> {
+    async getAll(req: any, res: Response): Promise<void> {
         res.send(await getRepository(Product).find({
-            relations: ["sites", "sites.product"]
+            relations: ["sites", "sites.product"],
+            where: {user: req.user.userId}
         }));
     }
 
