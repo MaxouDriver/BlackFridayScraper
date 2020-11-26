@@ -18,9 +18,7 @@
         <p v-if="error" class="text-red-500 text-xs italic">{{error}}</p>
         </div>
         <div class="flex items-center justify-between">
-            <button class="bg-blue hover:bg-blue-dark font-bold py-2 px-4 rounded" type="button" @click="login">
-                Sign In
-            </button>
+            <base-button text="Sign In" @click="login"/>
             
             <router-link
                 to="/register"
@@ -53,8 +51,10 @@
 
 <script>
 import axios from "axios";
+import BaseButton from '../components/global/BaseButton.vue';
 
 export default {
+  components: { BaseButton },
     name: "login",
 data() {
     return {

@@ -26,9 +26,7 @@
             <p v-if="error" class="text-red-500 text-xs italic">{{error}}</p>
         </div>
         <div class="flex items-center justify-between">
-            <button class="bg-blue hover:bg-blue-dark font-bold py-2 px-4 rounded" :disabled="password !== passwordConfirmation" type="button" @click="register">
-                Register
-            </button>
+            <base-button text="Register" :disabled="password !== passwordConfirmation" @click="register"/>
             
             <router-link
                 to="/login"
