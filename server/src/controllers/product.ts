@@ -21,8 +21,13 @@ export class ProductController {
         res.send(await getRepository(Product).delete(parseInt(id)));
     }
 
-    async addOne(req: Request, res: Response): Promise<void> {
+    async addOne(req: any, res: Response): Promise<void> {
         const { product } = req.body
-        res.send(await getRepository(Product).save(product));
+        res.send(await getRepository(Product).save({
+            ...product,
+            user: {
+                id: req.user.userId
+            }
+        }));
     }
 }
