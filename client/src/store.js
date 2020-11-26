@@ -4,7 +4,7 @@ const store = createStore({
     state(){
         return {
             products: [],
-            authenticatedUser: undefined
+            authenticatedUser: localStorage.authenticatedUser !== undefined ? JSON.parse(localStorage.authenticatedUser) : undefined
         }
     },
     mutations: { 
@@ -70,6 +70,11 @@ const store = createStore({
         },
         setUser(context, payload){
             context.commit('setUser', payload)
+            localStorage.authenticatedUser = JSON.stringify(payload);
+        },
+        deleteUser(context){
+            context.commit('setUser', undefined)
+            localStorage.authenticatedUser = undefined;
         },
     },
     getters: {

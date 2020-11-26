@@ -83,37 +83,9 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
-    name: "landing-page",
-    created() {
-        this.fetchUser();
-    },
-    computed: {
-        products(){
-            return this.$store.getters.productList
-        }
-    },
-    watch: {
-        // call again the method if the route changes
-        $route: "fetchUser"
-    },
-    methods: {
-        fetchUser() {
-            axios
-            .post("http://localhost:4000/user", {
-          headers: {
-            Authorization: 'Bearer ' + this.$store.getters.authenticatedUser?.token
-          }
-        })
-            .then(response => {
-            if (response.status === 200)
-                this.$store.dispatch("setUser", response.data);
-            })
-            .catch(err => (this.error = err.toString()));
-        }
-    }
+    name: "landing-page"
 }
 </script>
 
